@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!-- Header for HomePage -->
+{% block header %}
+<header class="w3-container w3-center w3-padding-32">
+  <h1><b>WELCOME TO THE INFO HUB</b></h1>
+  <p>Welcome to the blog of <span class="w3-tag">Hilltop 2021</span></p>
+  <p>The local date and time is {{ moment(current_time).format("dddd, MMMM Do YYYY, h:mm:ss a") }}.</p>
+  <p>That was "{{ moment(current_time).fromNow(refresh=True) }}"</p>
+</header>
+{% endblock %}
+
+<!-- BLOG ENTRY -->
+
+{% block block_current_week %}
+<div class="w3-container w3-padding">
+  <h4><span class="w3-tag"><b>WEEKLY POSTS</b></span></h4>
+</div>
+
+{% for post in posts %}
+<div class="w3-card-4 w3-margin w3-white">
+  <img src="{{ url_for('static', filename = '/images/'+ post.post_name) }}" alt="Cinque Terre" style="width:100%">
+  <div class="w3-container">
+    <h3><b>{{ post.title }}</b></h3>
+    <h5> {{post.subheading}} <span class="w3-opacity"> {{moment(post.timestamp).fromNow()}}</span></h5>
+  </div>
+  <div class="w3-container">
+    <p>{{post.description}}</p>
+    <div class="w3-row">
+      <div class="w3-col m8 s12">
+        <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<hr>
+{% endblock %}
+
+
+{% block EMAIL %}
+<div class="w3-card w3-margin">
+  <div class="w3-container w3-padding">
+    <h4><b>Sign Up</b></h4>
+  </div>
+  <div class="w3-container w3-white">
+    <p>Enter your information to join the Mailing list and stay up to date with all the information concerning
+      your
+      community.</p>
+    <p>(Only Offical Purdue Emails are allowed to sign up!)</p>
+    <p>{{ wtf.quick_form(form) }}</p>
+  </div>
+</div>
+{% endblock %}

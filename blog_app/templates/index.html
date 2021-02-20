@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<title>{% block title %}{% endblock %} Hilltop Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Raleway", sans-serif
+  }
+</style>
+
+<body class="w3-light-grey">
+  <!--NAVBAR-->
+  {% block navbar %}
+  <nav class="Navbar">
+    <div class="w3-bar w3-black">
+      <a class="w3-bar-item w3-button" href="/">Home</a>
+      <a class="w3-bar-item w3-button" href="/about">About</a>
+    </div>
+  </nav>
+  {% endblock %}
+
+  <!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+  <div class="w3-content" style="max-width:1400px">
+
+    <!-- HEADER -->
+    {% block header %}
+    {% endblock %}
+
+    <!--FORMS-->
+    {% block content %}
+    <div class="container">
+      {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
+
+    <!-- Grid -->
+    <div class="w3-row">
+      <!-- Blog entries -->
+      <div class="w3-col l8 s12">
+
+        <!-- BLOG ENTRY -->
+        {% block block_current_week %}
+        {% endblock %}
+
+        <!--BLOG ENTRIES-->
+        {% block block_last_week %}
+        {% endblock %}
+
+        <!--Extra FORM-->
+        {% block Extra %}
+        {% endblock %}
+
+      </div>
+
+      <!-- RIGHT SIDE MENU -->
+      <div class="w3-col l4">
+        <!-- About Card -->
+        {% block about_me %}
+        <div class="w3-card w3-margin w3-margin-top">
+          <div class="text-center">
+            <img src="{{url_for('static', filename = '/images/Welcome_Pic.png')}}" alt="Cinque Terre"
+              style="width:100%">
+          </div>
+          <div class="w3-container w3-white">
+            <h4><b>HTLP Community UPDATE BLOG</b></h4>
+            <p>Welcome to the Hilltop weekly Blog, Here is where you will find all the weekly Updates on things going on
+              the the community.If you are a resident of HLTP 28-(1-14) or HLTP 22, you should be already registered to
+              this Blog's Email
+              LIST. If not,feel free to add sign up below</p>
+          </div>
+        </div>
+        {% endblock %}
+
+        <hr>
+
+        <!-- Side Links -->
+        <div class="w3-card w3-margin">
+          <div class="w3-container w3-padding">
+            <h4><b>Popular Links</b></h4>
+          </div>
+          <ul class="w3-ul w3-hoverable w3-white">
+            <li class="w3-padding-16">
+              <a href="https://www.purdue.edu/fix-it">
+                <img src="{{ url_for('static', filename = '/images/fix_it.png') }}" alt="Image"
+                  class="w3-left w3-margin-right" style="width:50px">
+                <span class="w3-large">Fix-it</span><br>
+              </a>
+              <span>Fix a maintenance issue</span>
+            </li>
+            <li class="w3-padding-16">
+              <a href="https://boilerlink.purdue.edu/events">
+                <img src="{{ url_for('static', filename = '/images/BoilerLink.png') }}" alt="Image"
+                  class="w3-left w3-margin-right" style="width:50px">
+                <span class="w3-large">BoilerLink</span><br>
+              </a>
+              <span>Find upcoming events</span>
+            </li>
+
+            <li class="w3-padding-16">
+              <a href="https://www.purdue.edu">
+                <img src="{{ url_for('static', filename = '/images/Purdue_hp.png') }}" alt="Image"
+                  class="w3-left w3-margin-right" style="width:50px">
+                <span class="w3-large">Purdue HomePage</span><br>
+              </a>
+              <span>Purdue University Website</span>
+            </li>
+            <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+              <a href="https://www.housing.purdue.edu/Housing/Residences/Hilltop/index.html">
+                <img src="{{ url_for('static', filename = '/images/Hilltop_hp.png') }}" alt="Image"
+                  class="w3-left w3-margin-right" style="width:50px">
+                <span class="w3-large">Hilltop Apartments</span><br>
+              </a>
+              <span>Official Hilltop Home page</span>
+            </li>
+          </ul>
+        </div>
+        <hr>
+
+        <!-- EMAIL LIST -->
+        {% block EMAIL %}
+        {% endblock %}
+
+
+        <!-- END Introduction Menu -->
+      </div>
+
+      <!-- END GRID -->
+    </div><br>
+
+    <!-- END w3-content -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+  </footer>
+
+</body>
+
+</html>
+
+<!--SCRIPTS-->
+{% block scripts %}
+{{ moment.include_jquery() }}
+{{ moment.include_moment() }}
+{% endblock %}
